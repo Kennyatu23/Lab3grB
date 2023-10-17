@@ -1,9 +1,9 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.swing.plaf.PanelUI;
 
 @RestController
 public class UserController {
@@ -17,7 +17,15 @@ public class UserController {
 
        return us.registerUser(name, email);
 
-
+    @Autowired
+    public UserController(AcknowledgeService AcknowledgeService){
+        this.AcknowledgeService = AcknowledgeService;
+        }
+    }
+    @PostMapping("/confirm-and-register")
+    public String confirmAndRegister(@RequestBody Details)
+    {
+        return AcknowledgeService.ackMessage(Details);
     }
 }
 
