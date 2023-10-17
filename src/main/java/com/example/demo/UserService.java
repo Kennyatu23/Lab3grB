@@ -1,8 +1,10 @@
 package com.example.demo;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 // UserService with annotation
+@Data
 @Service //or Componet, @Service, or @Respository depending on purpose of class
 public class UserService {
     private final EmailService emailservice;
@@ -18,6 +20,7 @@ public class UserService {
 
         //Send Confirmation email
        String message = emailservice.sendEmail(email, "Welcome to our Platform" + username +"\t" + email);
+       return message;
     }
 }
 
